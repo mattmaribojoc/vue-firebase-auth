@@ -6,7 +6,8 @@ This is the final code for my [Vue 3 Firebase Auth Code Tutorial](https://learnv
 1. Clone this repository
 2. Setup your Google Firebase project and change the code in ```main.js```, following the tutorial
 3. Install dependencies using ```npm install```
-4. Run ```npm run dev```
+4. Run ```firebase emulators:start```
+5. Run ```npm run dev```
 
 For a complete step-by-step instructions and explanation of why this code works, be sure to [follow along with the tutorial](https://learnvue.co/2021/06/a-vue-firebase-authentication-tutorial-vue-3-and-firebase/)
 
