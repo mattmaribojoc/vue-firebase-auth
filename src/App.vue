@@ -6,7 +6,7 @@
         <router-link to="/feed"> Feed </router-link> |
       </span>
       <span v-if="isLoggedIn"> 
-        <button @click="signOut"> Logout </button> 
+        <button @click="handleSignOut"> Logout </button> 
       </span>
       <span v-else>
         <router-link to="/register"> Register </router-link> |
@@ -20,7 +20,7 @@
 
 <script setup>
 import { ref, watchEffect } from 'vue' // used for conditional rendering
-import firebase from 'firebase'
+import { getAuth,onAuthStateChanged, signOut } from 'firebase/auth'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -28,7 +28,7 @@ const router = useRouter()
 const isLoggedIn = ref(true)
 
 // runs after firebase is initialized
-firebase.auth().onAuthStateChanged(function(user) {
+onAuthStateChanged(getAuth(),function(user) {
     if (user) {
       isLoggedIn.value = true // if we have a user
     } else {
@@ -36,8 +36,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 })
 
-const signOut = () => {
-  firebase.auth().signOut()
+const handleSignOut = () => {
+  signOut(getAuth())
   router.push('/')
 }
 </script>
